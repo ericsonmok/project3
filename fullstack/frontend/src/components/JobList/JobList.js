@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 
-import JobSpec from './JobsManagement/JobSpec';
+import JobSpec from './JobSpec/JobSpec';
 
 import './JobList.css';
 
