@@ -23,5 +23,6 @@ backend/
 4. npm bcrypt
 5. npm uuid
 
+
 3. test connection to database with hard code data
 - uncomment the section test section in app.js to test if data in database is updated.
