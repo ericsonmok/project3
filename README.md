@@ -3,17 +3,17 @@
 1. check if you have the following path:
 - backend baseline has the following path:
 backend/
-      -bin
-      -model
-      -public
-      -routes
-      -.babelrc
-      -.env.example
-      -.eslintrc.json
-      -.gitignore
-      -app.js
-      -package-lock.json
-      -package.json
+bin
+model
+public
+routes
+.babelrc
+.env.example
+.eslintrc.json
+.gitignore
+app.js
+package-lock.json
+package.json
 
 2. install the following path
 - package to install
@@ -24,5 +24,5 @@ backend/
 5. npm uuid
 
 
-3. test connection to database with hard code data
+3.Test connection to database with hard code data
 - uncomment the section test section in app.js to test if data in database is updated.
