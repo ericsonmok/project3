@@ -1,21 +1,41 @@
 import React, { Component } from 'react';
+
+import JobList from './components/JobList/JobList';
+import TalentList from './components/JobList/JobList';
+
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      activeJob: ""
+    }
+  }
+
+  setActiveJob = (id) => {
+
+    console.log("Active job: ", id);
+
+    this.setState({
+      activeJob: id
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+    <div className="App container-fluid">
+      <div className="row">
+      <h1>Talent Match</h1>
+        <div className="col-md-2" id="JobList">
+          <JobList setActiveCar={ this.setActiveJob} activeJob= {this.state.activeJob}/>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
-    );
-  }
+    </div>
+  );
+}
 }
 
 export default App;

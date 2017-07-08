@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 
-import TalentView from './TalentView/TalentView';
+import TalentView from '../TalentView/TalentView';
 
 import './TalentList.css';
 
