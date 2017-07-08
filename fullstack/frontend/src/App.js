@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import JobList from './components/JobList/JobList';
-import TalentList from './components/JobList/JobList';
+import TalentList from './components/TalentList/TalentList';
 
 import logo from './logo.svg';
 import './App.css';
@@ -30,7 +30,7 @@ class App extends Component {
       <div className="row">
       <h1>Talent Match</h1>
         <div className="col-md-2" id="JobList">
-          <JobList setActiveCar={ this.setActiveJob} activeJob= {this.state.activeJob}/>
+          <JobList setActiveJob={ this.setActiveJob} activeJob= {this.state.activeJob}/>
         </div>
       </div>
     </div>
