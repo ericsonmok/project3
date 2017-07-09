@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import JobList from './components/JobList/JobList';
 import TalentList from './components/TalentList/TalentList';
+import Login from './components/Login/Login';
 
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -25,17 +25,40 @@ class App extends Component {
   }
 
   render() {
+    const isLoggedIn = this.props.user._id;
+
     return (
     <div className="App container-fluid">
       <div className="row">
-      <h1>Talent Match</h1>
-        <div className="col-md-2" id="JobList">
-          <JobList setActiveJob={ this.setActiveJob} activeJob= {this.state.activeJob}/>
+        {isLoggedIn ? (
+          <div className="isLoggedIn">
+            <div className="col-md-2" id="JobList">
+              <JobList setActiveJob={ this.setActiveJob} activeJob= {this.state.activeJob}/>
+            </div>
+            <div className="col-md-10" id="JobEdit">
+                <Create job={this.state.activeJob}/>
+              </div>
+            </div>
+          ) : (
+            <div className="col-md-4 col-md-offset-4" id="Login">
+              <Login/>
+            </div>
+          )}
         </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
