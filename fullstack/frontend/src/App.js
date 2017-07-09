@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import JobList from './components/JobList/JobList';
-import TalentList from './components/TalentList/TalentList';
+import JobSpec from './components/JobSpec/JobSpec';
 import Login from './components/Login/Login';
 
 import './App.css';
@@ -32,12 +33,6 @@ class App extends Component {
       <div className="row">
         {isLoggedIn ? (
           <div className="isLoggedIn">
-            <div className="col-md-2" id="JobList">
-              <JobList setActiveJob={ this.setActiveJob} activeJob= {this.state.activeJob}/>
-            </div>
-            <div className="col-md-10" id="JobEdit">
-                <Create job={this.state.activeJob}/>
-              </div>
             </div>
           ) : (
             <div className="col-md-4 col-md-offset-4" id="Login">
