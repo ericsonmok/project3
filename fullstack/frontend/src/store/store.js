@@ -1,14 +1,18 @@
 import { createStore, compose, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 
-import CarReducer from '../reducers/carReducer.js'
+import employerReducer from '../reducers/employerReducer.js'
+import jobReducer from '../reducers/jobReducer.js'
+import talentReducer from '../reducers/talentReducer.js'
 import userReducer from '../reducers/userReducer.js'
 
 
 export let initStore = () => {
 
   const reducer = combineReducers( {
-    cars: CarReducer,
+    employer: employerReducer,
+    job: jobReducer,
+    talent: talentReducer,
     user: userReducer
   });
 
