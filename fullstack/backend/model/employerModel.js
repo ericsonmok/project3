@@ -1,17 +1,15 @@
-//model/employerModel.js
+// model/employerModel.js
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import uuid from 'uuid';
 
 // define the schema for our Employer
 var employerSchema = mongoose.Schema({
-
-    email         : { type: String, unique: true },   // email address for employer
+    email         : String,   // email address for employer
     name          : String,                           //Employer's company name
     contact       : String,                           //contact number
-    address       : String
-    
+    address       : String,
+    password      : String
 },{ timestamps: true });
 
 

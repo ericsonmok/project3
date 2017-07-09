@@ -1,19 +1,17 @@
 //model/talentModel.js
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-import uuid from 'uuid-v4';
 
 // define the schema for our Employer
 var talentSchema = mongoose.Schema({
-
-
-    email         : { type: String, unique: true },       //Talent's email address
+    email         : String,       //Talent's email address
     name          : String,                               //Talent's  name
     contact       : String,                               //contact number
     address       : String,                               //company location
     qualification : String,                               //highest qualification
     skillList     : Array,                                //list of skills
-    salary        : Number                                //minimum salary requirement
+    salary        : Number,                               //minimum salary requirement
+    password      : String
 
 },{ timestamps: true});
 
@@ -21,7 +19,6 @@ var talentSchema = mongoose.Schema({
  * Password hash middleware.
  */
 talentSchema.pre('save', function save(next) {
-
   console.log('pre save hook');
   const user = this;
   if (!user.isModified('password')) { return next(); }

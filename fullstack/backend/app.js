@@ -16,17 +16,17 @@ dotenv.load({ path: '.env.example' });
 import path from 'path';
 import lessMiddleware from 'less-middleware';
 import index from './routes/index';
-//import carAPI from './routes/car';
 
-console.log(process.env.MONGOLAB_URI);
+//import all Routes
+import employerAPI from './routes/employerRoute';
+import talentAPI from './routes/talentRoute';
+import jobAPI from './routes/jobRoute';
 /**
  * Connect to MongoDB.
  */
 mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost/p3-jobsearch' || 'mongodb://admin:password@ds151062.mlab.com:51062/p3-jobsearch');
 //mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
-mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
-
+mongoose.connect(process.env.MONGODB_URI)
 
 mongoose.connection.on('error', (err) => {
   console.error(err);
@@ -40,7 +40,7 @@ mongoose.connection.on('error', (err) => {
 * before CRUD implementation
 ************************************************************/
 //import all Models
-// import Talent from "./model/talentModel";
+// import Talent from "./Model/talentModel";
 // import Employer from "./model/employerModel";
 // import Job from "./model/jobModel";
 //
@@ -113,8 +113,8 @@ const app = express();
 const debug = Debug('backend:app');
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -129,14 +129,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(function(req, res, next) {
-
   console.log( "Method: " + req.method +" Path: " + req.url)
-
   next();
 });
 
+// paths
 app.use('/', index);
-//app.use('/api', carAPI);
+app.use('/employer', employerAPI);
+app.use('/talent', talentAPI);
+app.use('/job', jobAPI);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
