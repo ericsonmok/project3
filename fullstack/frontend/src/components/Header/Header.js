@@ -15,7 +15,7 @@ export class Header extends Component { // eslint-disable-line react/prefer-stat
         <div>
       <nav className="navbar navbar-toggleable-md mb-4 top-bar navbar-static-top sps sps--abv">
         <div className="container">
-          <a className="navbar-brand" href="#">JOB<span>search</span></a>
+          <a className="navbar-brand">JOB<span>search</span></a>
           <div className="collapse navbar-collapse" id="navbarCollapse1">
             <Nav/>
           </div>

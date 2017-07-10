@@ -13,6 +13,10 @@ body {
 h1, h2, h3, h4, h5 {
 	font-family: 'Montserrat', sans-serif;
 }
+
+a {
+  margin-right: 10px;
+}
 .parallax-section {
 	background-attachment: fixed!important;
 }
@@ -61,6 +65,7 @@ section {
 	border-radius: 0;
 	padding: 16px 0;
 	z-index: 16;
+  background-color: #ADD8E6;
 }
 .navbar-toggler {
 	border: 1px solid #fff;

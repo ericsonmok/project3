@@ -20,7 +20,7 @@ export class Home extends Component { // eslint-disable-line react/prefer-statel
         <div className="swiper-container main-slider" id="myCarousel">
           <div className="swiper-wrapper">
             <div className="swiper-slide slider-bg-position" style={{background: 'url("http://grafreez.com/wp-content/temp_demos/burnout/img/1.jpg")'}} data-hash="slide1">
-            <h2>Get a job that you love.<br />Focus on what you do best</h2>
+            <h2>Get a job that you love<br />Focus on what you do best</h2>
             </div>
 
           </div>

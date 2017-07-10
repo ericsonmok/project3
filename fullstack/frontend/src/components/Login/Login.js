@@ -69,7 +69,7 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
           });
         }else{
           console.log("AJAX: Signed up @ '/auth/signup'");
-          window.location.href = "/";
+          window.location.href = "/signup";
         }
       })
       .catch((error)=> {
@@ -89,13 +89,16 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
   render() {
     return (
 
-    <div col-md-4 col-md-offset-12 header>
-    <Header/>
-      <div className="col-md-4 col-md-offset-4 login">
+
+
         <form>
+        <div className="col-md-offset-12 header">
+        <Header/>
+        </div>
+          <div className="col-md-4 col-md-offset-4 login">
           <div className="error">{this.state.error}</div>
           <div className="form-group">
-            <label htmlFor="email">Email address</label>
+            <label htmlFor="email">Email</label>
             <input type="email"
                    className="form-control"
                    id="email"
@@ -112,19 +115,22 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
                    value={this.state.password}
                    onChange={this.onChange}/>
           </div>
+          <div className="col-md-4">
           <button type="submit"
                   className="btn btn-primary submit"
                   onClick={this.localLogin}>Login</button>
-          <button type="submit"
-                  className="btn btn-default submit"
-                  onClick={this.localSignup}>Sign up</button>
-          <div className="or">or</div>
+          </div>
+          <div className="col-md-4">
+          <a class="btn btn-primary submit" href="/signup" role="button">Signup</a>
+          </div>
+          <div className="col-md-12 or">or</div>
+          <div className="col-md-12">
           <button type="submit"
                   className="btn btn-primary facebook"
                   onClick={this.facebookLogin}>Login with Facebook</button>
-        </form>
+          </div>
       </div>
-      </div>
+</form>
 
     );
   }
