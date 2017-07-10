@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
+import Header from '../Header/Header';
 import './Login.css';
 
 /**
@@ -87,7 +88,10 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
 
   render() {
     return (
-      <div className="login">
+
+    <div col-md-4 col-md-offset-12 header>
+    <Header/>
+      <div className="col-md-4 col-md-offset-4 login">
         <form>
           <div className="error">{this.state.error}</div>
           <div className="form-group">
@@ -120,6 +124,8 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
                   onClick={this.facebookLogin}>Login with Facebook</button>
         </form>
       </div>
+      </div>
+
     );
   }
 }
