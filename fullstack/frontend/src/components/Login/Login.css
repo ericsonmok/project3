@@ -23,22 +23,3 @@
   font-weight: bold;
   color: red;
 }
-
-form {
-    margin-top: 150px;
-
-}
-
-.btn-default.submit {
-    float: right;
-  }
-
-.btn-primary.submit{
-  float: right;
-}
-
-.btn-primary.facebook {
-  float:left;
-  clear:both;
-
-}

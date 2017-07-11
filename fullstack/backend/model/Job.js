@@ -1,10 +1,10 @@
-//model/jobModel.js
+//model/Job.js
 
 // load the things we need
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
-const talent = require ('./talentModel')
-const employer = require ('./employerModel')
+const talent = require ('./Talent')
+const employer = require ('./Employer')
 
 // define the schema for our Employer
 var jobSchema = mongoose.Schema({

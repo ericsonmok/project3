@@ -1,4 +1,7 @@
+
 import axios from 'axios';
+
+
 
 const loadingJobs = () => {
   return {
@@ -25,7 +28,7 @@ export const initJobs = () => {
   return (dispatch) => {
 
     dispatch(loadingJobs());
-    axios.get('/api/')
+    axios.get('/job/')
       .then( (response) => {
         dispatch(addJobs(response.data));
       })
@@ -54,14 +57,14 @@ export const readJob = (job) => {
   }
 }
 
-export const updateJob = (job) => {
+export const updateJobs = (job) => {
   return {
     type: 'UPDATE_JOB',
     job
   }
 }
 
-export const deleteJob= (job) => {
+export const deleteJob = (job) => {
   return {
     type: 'DELETE_JOB',
     job

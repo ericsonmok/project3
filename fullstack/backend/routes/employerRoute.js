@@ -1,7 +1,8 @@
 //routes/employerRoute.js
 
 import express from 'express';
-import Employer from '../model/employerModel';
+import Employer from '../model/Employer';
+import User from '../model/User';
 
 const router = express.Router();
 

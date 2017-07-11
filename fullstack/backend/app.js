@@ -1,116 +1,42 @@
+import session from 'express-session';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import Debug from 'debug';
 import express from 'express';
 import logger from 'morgan';
-const dotenv = require('dotenv');
 import mongoose from 'mongoose';
-
-/**
- * Load environment variables from .env file, where API keys and passwords are configured.
- */
-dotenv.load({ path: '.env.example' });
-
+import passport from 'passport';
 
 // import favicon from 'serve-favicon';
 import path from 'path';
 import lessMiddleware from 'less-middleware';
 import index from './routes/index';
-
-//import all Routes
+import auth from './routes/auth';
 import employerAPI from './routes/employerRoute';
 import talentAPI from './routes/talentRoute';
 import jobAPI from './routes/jobRoute';
-/**
- * Connect to MongoDB.
- */
-mongoose.Promise = global.Promise;
-//mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
-mongoose.connect(process.env.MONGODB_URI)
 
+/**
+ * Load environment variables from .env file, where API keys and passwords are configured.
+ */
+const dotenv = require('dotenv');
+dotenv.load({ path:'.env.example' });
+
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on('error', (err) => {
   console.error(err);
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
 
-/************************************************************
-* ----------------Start of Testing section---------------
-* this section is to test connection and updating to database
-* before CRUD implementation
-************************************************************/
-//import all Models
-// import Talent from "./Model/talentModel";
-// import Employer from "./model/employerModel";
-// import Job from "./model/jobModel";
-//
-// //hard code creation on Talent Schema
-// let talent1 = new Talent ({
-//   email         : "juliana@gmail.com",       //Talent's email address
-//   name          : "Juliana",                            //Talent's  name
-//   contact       : "12345678",                           //contact number
-//   address       : "Woodlands Ave",                      //company location
-//   qualification : "test",                               //highest qualification
-//   skillList     : ["html", "js" ],                      //list of skills
-//   salary        : 5000                                 //minimum monthly salary requirement
-//   });
-//
-// //a callback because you want to check on the error IMMEDIATELY after you create the Talent object
-// talent1.save((err) => {
-//     if(err){
-//       console.log (err.message);
-//       return;
-//     }
-//     console.log ('Talent 1 has been saved');   //output to terminal
-//   });
-//
-// //hard code creation on Employer Schema
-// let employer1 = new Employer ({
-//   email         : "employerABC@employer1.com",        // email address for employer
-//   name          : "Employer ABC Limited",             //Employer's company name
-//   contact       : "12225678",                             //contact number
-//   address       : "Orchard Central"
-//   });
-//
-// //a callback because you want to check on the error IMMEDIATELY after you create the Flight object
-// employer1.save((err) => {
-//     if(err){
-//       console.log (err.message);
-//       return;
-//     }
-//     console.log ('Employer 1 has been saved');   //output to terminal
-//   });
-//
-//   //hard code creation on Job Schema
-//   let job1 = new Job ({
-//     title         : "Software Engineer",             //Job title
-//     maxSalary     : "20000",             //max salary
-//     qualification : "Bsc",             //min qualification
-//     skillList     : ["html", "js" ],              //list of skills
-//     closingDate   : "20 June 2017",               //closing date for this job
-//     talentList    : [talent1],
-//     employer      : employer1      //contains an Employer information
-//     });
-//
-//   //a callback because you want to check on the error IMMEDIATELY after you create the Flight object
-//   job1.save((err) => {
-//       if(err){
-//         console.log (err.message);
-//         return;
-//       }
-//       console.log ('Job 1 has been saved');   //output to terminal
-//     });
-
-
-/************************************************************
-* -----------End of Testing section--------------
-* this section is to test connection and updating to database
-* before CRUD implementation
-************************************************************/
-
-
 const app = express();
 const debug = Debug('backend:app');
+
+/**
+ * API keys and Passport configuration.
+ */
+const passportConfig = require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -128,7 +54,21 @@ app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use(function(req, res, next) {
+const MongoStore = require('connect-mongo')(session);
+app.use(session({
+  resave: true,
+  saveUninitialized: true,
+  secret: "WDI Singapore",
+  store: new MongoStore({
+    url: process.env.MONGODB_URI,
+    autoReconnect: true,
+    clear_interval: 3600
+  })
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(function(req, res, next){
   console.log( "Method: " + req.method +" Path: " + req.url)
   next();
 });
@@ -138,6 +78,8 @@ app.use('/', index);
 app.use('/employer', employerAPI);
 app.use('/talent', talentAPI);
 app.use('/job', jobAPI);
+app.use('/auth', auth);
+
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

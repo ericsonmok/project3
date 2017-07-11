@@ -1,24 +1,22 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
-  text-align: center;
+  height: 100vh;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+#JobList {
+    height: 100vh;
+    border-right: solid 1px #DDDDDD;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+#JobEdit {
+  height: 100vh;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.clearfix {
+  clear: both;
+  margin-bottom: 15px;
 }

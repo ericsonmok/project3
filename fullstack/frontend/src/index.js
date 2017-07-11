@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import { getUser } from './actions/user';
 
+
 // Redux
 import { Provider } from 'react-redux';
 import { initStore } from './store/store';
@@ -16,7 +17,7 @@ const store = initStore();
 store.dispatch(getUser());
 
 ReactDOM.render( <Provider store={store}>
-                <App />
-                </Provider>,
-                document.getElementById('root'));
+                 <App />
+                 </Provider>,
+                 document.getElementById('root'));
 registerServiceWorker();

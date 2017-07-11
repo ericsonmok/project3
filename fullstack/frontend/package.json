@@ -2,17 +2,30 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/job": {
+      "target": "http://localhost:3001",
+      "ws": true
+    },
+    "/auth": {
+      "target": "http://localhost:3001",
+      "ws": true
+    }
+  },
   "dependencies": {
     "axios": "^0.16.2",
+    "bcrypt": "^1.0.2",
     "bootstrap": "3",
+    "crypto": "^0.0.3",
+    "dotenv": "^4.0.0",
+    "mongoose": "^4.11.1",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "redux": "^3.7.1",
-    "redux-thunk": "^2.2.0",
-    "thunk": "^0.0.1"
+    "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.10"

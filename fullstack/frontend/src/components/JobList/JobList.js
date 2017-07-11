@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import axios from 'axios';
 
-import JobSpec from '../JobSpec/JobSpec';
+import JobListView from '../JobListView/JobListView';
 
 import './JobList.css';
 
-/*Jobs List*/
-export class JobList extends Component {
+/****************************************************
+ * JobList
+ ***************************************************/
+export class JobList extends Component { // eslint-disable-line react/prefer-stateless-function
 
   constructor(props){
     super(props);
@@ -18,15 +20,18 @@ export class JobList extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/')
+
+    console.log("JobList.componentDidMount");
+
+    axios.get('/job/')
       .then( (response) => {
-        console.log(response);
+        console.log("This is the response: " + response);
         this.setState({
           jobs: response.data
         });
       })
-      .catch( (error) => {
-        console.log(error);
+      .catch((error)=> {
+        console.log("Err in CompDidMount: "+error);
       });
   }
 
@@ -36,18 +41,22 @@ export class JobList extends Component {
 
   addJobs = () => {
     return this.state.jobs.map((job) => {
-      let isActive = job._id == this.state.activeJob ? "active" : "";
-      return ( <JobSpec job={job} key={ job._id} onClick={this.onClick} active={isActive} />)
+      let isActive = job._id === this.state.activeJob ? "active" : "";
+      return ( <JobListView job={job} key={ job._id } onClick={this.onClick} active={isActive} /> )
     });
   }
 
   render() {
     return (
       <div className="row" id="JobList">
-        {this.addJobs()}
+        <div className="col-md-12" id="search">
+          <input className="form-control" type="text" placeholder="Search" />
+         </div>
+         {this.addJobs()}
       </div>
     );
   }
 }
+
 
 export default JobList;

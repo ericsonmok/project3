@@ -1,7 +1,8 @@
 //routes/talentRoute.js
 
 import express from 'express';
-import Talent from '../model/talentModel';
+import Talent from '../model/Talent';
+import User from '../model/User';
 
 const router = express.Router();
 

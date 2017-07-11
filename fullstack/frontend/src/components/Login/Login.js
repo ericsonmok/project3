@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import axios from 'axios';
 
-import Header from '../Header/Header';
 import './Login.css';
 
 /**
@@ -30,7 +29,6 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
     console.log(state);
     this.setState(state);
   }
-
 
 
   localLogin = (e) => {
@@ -69,7 +67,7 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
           });
         }else{
           console.log("AJAX: Signed up @ '/auth/signup'");
-          window.location.href = "/signup";
+          window.location.href = "/";
         }
       })
       .catch((error)=> {
@@ -88,17 +86,11 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
 
   render() {
     return (
-
-
-
+      <div className="login">
         <form>
-        <div className="col-md-offset-12 header">
-        <Header/>
-        </div>
-          <div className="col-md-4 col-md-offset-4 login">
           <div className="error">{this.state.error}</div>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Email address</label>
             <input type="email"
                    className="form-control"
                    id="email"
@@ -115,23 +107,18 @@ export class Login extends Component { // eslint-disable-line react/prefer-state
                    value={this.state.password}
                    onChange={this.onChange}/>
           </div>
-          <div className="col-md-4">
           <button type="submit"
                   className="btn btn-primary submit"
                   onClick={this.localLogin}>Login</button>
-          </div>
-          <div className="col-md-4">
-          <a class="btn btn-primary submit" href="/signup" role="button">Signup</a>
-          </div>
-          <div className="col-md-12 or">or</div>
-          <div className="col-md-12">
+          <button type="submit"
+                  className="btn btn-default submit"
+                  onClick={this.localSignup}>Sign up</button>
+          <div className="or">or</div>
           <button type="submit"
                   className="btn btn-primary facebook"
                   onClick={this.facebookLogin}>Login with Facebook</button>
-          </div>
+        </form>
       </div>
-</form>
-
     );
   }
 }

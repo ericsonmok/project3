@@ -1,9 +1,9 @@
 // //routes/jobRoute.js
 //
 import express from 'express';
-import Job from '../model/jobModel';
-import Employer from '../model/jobModel';
-import Talent from '../model/talentModel';
+import Job from '../model/Job';
+import Employer from '../model/Employer';
+import Talent from '../model/Talent';
 
 const router = express.Router();
 
@@ -13,8 +13,8 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   console.log("got GET request");
-
   Job.find({}, (err, jobs) => {
+    console.log(jobs);
     if (err) return res.status(404).send('Not found');
     res.json(jobs);
   });
