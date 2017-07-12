@@ -34,10 +34,10 @@ class App extends Component {
         <div className="row">
           {isLoggedIn ? (
             <div className="isLoggedIn">
-              <div className="col-md-2" id="JobList">
+              <div className="col-md-4" id="JobList">
                 <JobList setActiveJob={ this.setActiveJob } activeJob= {this.state.activeJob}/>
               </div>
-              <div className="col-md-10" id="JobEdit">
+              <div className="col-md-8" id="JobEdit">
                 <Create job={this.state.activeJob}/>
               </div>
             </div>

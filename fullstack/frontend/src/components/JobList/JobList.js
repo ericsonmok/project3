@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import {connect} from 'react-redux';
 import axios from 'axios';
 
 import JobListView from '../JobListView/JobListView';
+//import Search from '../Search/Search';
+import { searchJobs } from '../../API/JobAPI';
 
 import './JobList.css';
 
@@ -58,5 +61,17 @@ export class JobList extends Component { // eslint-disable-line react/prefer-sta
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    jobs: state.jobs,
+    searchTerm: state.internal.searchTerm
+  }
+}
 
-export default JobList;
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(JobList);

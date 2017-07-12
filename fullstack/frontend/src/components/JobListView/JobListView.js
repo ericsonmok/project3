@@ -14,10 +14,6 @@ export class JobListView extends Component { // eslint-disable-line react/prefer
 
   render() {
 
-    const tmp = this.props.job.closingDate;
-    console.log("Var :" + typeof(tmp));
-    // const tmp1 =tmp.toDateString();
-    // console.log("Var :" + tmp1);
     return (
       <div className={ "col-md-12 jobmini " + this.props.active} onClick={this.onClick} >
           <div className="title">{this.props.job.title}</div>

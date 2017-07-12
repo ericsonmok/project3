@@ -100,7 +100,7 @@ export class Create extends Component { // eslint-disable-line react/prefer-stat
     return (
       <div className="row">
       <div className="col-md-12 header">
-        <h2>Create Job Post</h2>
+        <h2>Job Post</h2>
       </div>
       <form className="col-md-6 col-md-offset-1">
         <div className="clearfix"></div>
@@ -124,21 +124,30 @@ export class Create extends Component { // eslint-disable-line react/prefer-stat
         </div>
         <div className="form-group">
           <label htmlFor="closingDate">Application Closing Date</label>
-          <input type="date"
+          <input type="text"
                  className="form-control"
                  id="closingDate"
-                 placeholder="ClosingDate"
+                 placeholder="Closing Date"
                  onChange={this.onChange}
                  value={ this.state.job && this.state.job.closingDate ? this.state.job.closingDate : ""}/>
         </div>
         <div className="form-group">
-          <label htmlFor="employer">Employer</label>
+          <label htmlFor="qualification">Qualification</label>
           <input type="text"
                  className="form-control"
-                 id="employer"
-                 placeholder="Employer Info"
+                 id="qualification"
+                 placeholder="Qualification"
                  onChange={this.onChange}
-                 value={ this.state.job && this.state.job.employer ? this.state.job.employer : ""}/>
+                 value={ this.state.job && this.state.job.qualification ? this.state.job.qualification : ""}/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="maxSalary">Max Salary</label>
+          <input type="text"
+                 className="form-control"
+                 id="maxSalary"
+                 placeholder="Max Salary"
+                 onChange={this.onChange}
+                 value={ this.state.job && this.state.job.maxSalary ? this.state.job.maxSalary : ""}/>
         </div>
         <button type="button"
                 className="btn btn-primary col-md-3"
