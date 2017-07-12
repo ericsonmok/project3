@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Login from './components/Login/Login';
-import JobView from './components/JobView/JobView';
+import TalentForm from './components/TalentForm/TalentForm';
 
 
 import './App.css';
@@ -28,8 +27,8 @@ class App extends Component {
 
   render() {
     return (
-            <div className="col-md-4 col-md-offset-4" id="Login">
-              <Login/>
+            <div className="col-md-12">
+              <TalentForm/>
             </div>
           );
         }
@@ -44,5 +43,5 @@ class App extends Component {
         return {
         }
       }
-      
+
 export default connect (mapStateToProps, mapDispatchToProps)(App);
