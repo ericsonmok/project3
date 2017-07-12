@@ -1,6 +1,6 @@
 const jobsReducer = (state = [], action) => {
 
-  console.log(action);
+  console.log("in my job reducer" , action);
 
   switch (action.type) {
     case "CREATE_JOB":

@@ -4,6 +4,7 @@ const initialState = {
 
 const internal = (state = initialState, action) =>{
 
+console.log("in my internal reducer: " , action);
   switch (action.type) {
     case 'UPDATE_SEARCH_TERM':
       return {
@@ -11,7 +12,6 @@ const internal = (state = initialState, action) =>{
         searchTerm: action.text
       }
     break;
-
     default:
       return state
   }

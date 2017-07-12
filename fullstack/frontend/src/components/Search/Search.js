@@ -22,6 +22,7 @@ export class Search extends Component { // eslint-disable-line react/prefer-stat
 
   onChange = (e) => {
       let searchText = e.target.value;
+      console.log("Search Text Entered: ", searchText);
       this.props.changeSearchTerm(searchText);
 
       this.setState({
@@ -31,16 +32,14 @@ export class Search extends Component { // eslint-disable-line react/prefer-stat
 
   render() {
     return (
-      <section className="row">
-        <div className="col-xs-12">
+        <div >
           <div className="input-group">
-            <input className="form-control input-md search"
+            <input className="form-control input-md"
                    type="text"
                    placeholder="Search"
                    onKeyUp={this.onChange} />
           </div>
         </div>
-      </section>
     );
   }
 }

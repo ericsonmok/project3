@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import JobListView from '../JobListView/JobListView';
-//import Search from '../Search/Search';
-import { searchJobs } from '../../API/JobAPI';
+import {searchJobs} from '../../API/JobAPI';
 
 import './JobList.css';
 
@@ -42,8 +41,12 @@ export class JobList extends Component { // eslint-disable-line react/prefer-sta
     this.props.setActiveJob(id);
   }
 
+
   addJobs = () => {
-    return this.state.jobs.map((job) => {
+    const jobs = searchJobs(this.props.searchTerm, this.state.jobs);
+    // console.log("Returned Jobs from search: " + this.state.jobs[0].title);
+    return jobs.map((job) => {
+
       let isActive = job._id === this.state.activeJob ? "active" : "";
       return ( <JobListView job={job} key={ job._id } onClick={this.onClick} active={isActive} /> )
     });
@@ -52,9 +55,6 @@ export class JobList extends Component { // eslint-disable-line react/prefer-sta
   render() {
     return (
       <div className="row" id="JobList">
-        <div className="col-md-12" id="search">
-          <input className="form-control" type="text" placeholder="Search" />
-         </div>
          {this.addJobs()}
       </div>
     );
@@ -62,15 +62,14 @@ export class JobList extends Component { // eslint-disable-line react/prefer-sta
 }
 
 const mapStateToProps = (state) => {
-  return {
-    jobs: state.jobs,
-    searchTerm: state.internal.searchTerm
-  }
+    return {
+        jobs: state.jobs,
+        searchTerm: state.internal.searchTerm
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
   }
 }
 

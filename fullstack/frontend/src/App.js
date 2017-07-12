@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import JobList from './components/JobList/JobList';
 import Create from './components/Create/Create';
 import Login from './components/Login/Login';
-
+import JobView from './components/JobView/JobView';
 import './App.css';
 
 class App extends Component {
@@ -27,25 +27,12 @@ class App extends Component {
   }
 
   render() {
-    const isLoggedIn = this.props.user._id;
+    //const isLoggedIn = this.props.user._id;
 
     return (
       <div className="App container-fluid">
         <div className="row">
-          {isLoggedIn ? (
-            <div className="isLoggedIn">
-              <div className="col-md-4" id="JobList">
-                <JobList setActiveJob={ this.setActiveJob } activeJob= {this.state.activeJob}/>
-              </div>
-              <div className="col-md-8" id="JobEdit">
-                <Create job={this.state.activeJob}/>
-              </div>
-            </div>
-          ) : (
-            <div className="col-md-4 col-md-offset-4" id="Login">
-              <Login/>
-            </div>
-          )}
+          <JobView/>
         </div>
       </div>
     );
