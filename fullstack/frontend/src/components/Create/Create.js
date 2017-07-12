@@ -95,7 +95,6 @@ export class Create extends Component { // eslint-disable-line react/prefer-stat
 
   }
 
-
   render() {
     return (
       <div className="row">

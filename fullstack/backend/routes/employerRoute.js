@@ -10,7 +10,7 @@ const router = express.Router();
 ********GET employer page. (/employer)
 **************************************/
 router.get('/', (req, res, next) => {
-  console.log("There is a GET Request");
+  console.log("There is a GET employer Request");
   Employer.find({}, (err, employers) => {
     if (err) return res.status(404).send('Not found');
     res.json(employers);
@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 ********CREATE employer page. (/employer)
 **************************************/
 router.post('/', (req, res, next) => {
-  console.log("There is a POST Request");
+  console.log("There is a POST employer Request");
   const employer = new Employer();
   employer.email = req.body.email || "Unknown";
   employer.name = req.body.name || "Unknown";
@@ -40,7 +40,7 @@ router.post('/', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   console.log("There is a GET an Employer Id Request");
   const id = req.params.id;
-  console.log(id)
+  console.log("Get from Employer.js: " + id)
   Employer.findById(id, (err, employer) => {
     if (err) return res.status(404).send('Not found');
     res.json(employer);
@@ -51,11 +51,11 @@ router.get('/:id', (req, res, next) => {
 ********UPDATE an employer page. (/employer/<id>)
 **************************************/
 router.put('/:id', (req, res, next) => {
- console.log("There is a PUT Request");
+ console.log("There is a PUT employer Request");
 
  const employer = req.body;
  console.log(employer);
- Employer.findById(employer._id, (err,foundEmployer ) => {
+ Employer.findById(employer.employerId, (err,foundEmployer ) => {
     console.log(err);
     if (err) return res.status(400).send('Bad Request');
 
@@ -80,6 +80,7 @@ router.put('/:id', (req, res, next) => {
 ********DELETE an employer page. (/employer/<id>)
 **************************************/
 router.delete('/:id', (req, res, next) => {
+  console.log("There is a DEL employer Request");
 
   const id = req.params.id;
   Employer.findById(id, (err, employer) => {

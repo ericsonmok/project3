@@ -101,7 +101,7 @@ app.use((err, req, res, next) => {
 
 // Handle uncaughtException
 process.on('uncaughtException', (err) => {
-  console.log(err);
+  console.log("Uncaught Exception from App.js" + err);
   process.exit(1);
 });
 

@@ -5,10 +5,15 @@ const user = require ('./User')
 
 // define the schema for our Employer
 var talentSchema = mongoose.Schema({
-    talentId    : [{                  //an array of Talent id who applied for this position
+    _id    : {                                            //_id from user
       type: mongoose.Schema.Types.ObjectId,
       ref: user
-    }],
+    },
+    email         :{                                      //email from user
+      type: mongoose.Schema.Types.String,
+      ref: user
+    },
+    role          : String,                               //role is set as "Employer"
     name          : String,                               //Talent's  name
     contact       : String,                               //contact number
     address       : String,                               //company location

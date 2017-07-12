@@ -25,22 +25,42 @@ router.get('/', (req, res, next) => {
 ***************************************/
 router.post('/', (req, res, next) => {
   console.log("got POST request...");
-  const job = new Job();
+  console.log("Current user email: "+req.user.email);
+  Employer.findById(req.user.id, (err, foundEmployer) => {
+    console.log(foundEmployer);
+    if (err) return res.status(400).send('Bad Request');
 
-  job.title = req.body.title || "Unknown Job Title";
-  job.employer = req.body.employer || "Unknown";
-  job.maxSalary = req.body.maxSalary || "Unknown Max Salary";
-  job.qualification = req.body.qualification || "Unknown Qualification";
-  job.skillList = req.body.skillList || "Unknown Skilllist";
-  job.closingDate = req.body.closingDate|| "2017-06-19";
-  job.talentList = req.body.talentList || "595f3dfc5c20595f3dfc5c20";
-  //console.log(job);
-  job.save((err, job) => {
-       console.log("Saving..",job);
-       res.json(job);
+    if(!foundEmployer){
+      return res.status(404).send('Not Found');
+    }
+
+
+    const title = req.body.title;
+    const employer = foundEmployer;
+    const maxSalary = req.body.maxSalary;
+    const qualification = req.body.qualification;
+    const closingDate = req.body.closingDate;
+    const skillList = req.body.skillList;
+    const talentList = req.body.talentList;
+
+
+    const job = new Job({
+      title: title,
+      maxSalary: maxSalary,
+      qualification: qualification,
+      closingDate: closingDate,
+      skillList: skillList,
+      talentList: talentList,
+      employer: employer
+    });
+
+    console.log(job);
+    job.save((err, job) => {
+         console.log("Saving..",job);
+         res.json(err);
+    });
   });
 });
-
 
 /*************************************
 ************ Read Job /job/<id>

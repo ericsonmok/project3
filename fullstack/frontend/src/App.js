@@ -5,6 +5,7 @@ import JobList from './components/JobList/JobList';
 import Create from './components/Create/Create';
 import Login from './components/Login/Login';
 import JobView from './components/JobView/JobView';
+import EmployerForm from './components/EmployerForm/EmployerForm';
 import './App.css';
 
 class App extends Component {

@@ -1,8 +1,6 @@
 
 import axios from 'axios';
 
-
-
 const loadingJobs = () => {
   return {
     type: "LOADING_JOBS",
@@ -39,8 +37,6 @@ export const initJobs = () => {
 }
 
 store.dispatch(initJobs);
-
-
 
 
 export const createJob = (job) => {
