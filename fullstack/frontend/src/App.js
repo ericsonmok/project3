@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import TalentForm from './components/TalentForm/TalentForm';
+import EmployerForm from './components/EmployerForm/EmployerForm';
 
 
 import './App.css';
@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     return (
             <div className="col-md-12">
-              <TalentForm/>
+              <EmployerForm/>
             </div>
           );
         }
